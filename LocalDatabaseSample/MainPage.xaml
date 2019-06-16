@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:LocalDatabaseSample" 
+             x:Class="LocalDatabaseSample.MainPage"
+             xmlns:Behaviors="clr-namespace:LocalDatabaseSample.Behaviors"
+             BackgroundColor="#F0ECEC">
+    
+ <StackLayout Margin="40">
+        
+            <Label Text="Contact information" FontSize="20" FontAttributes="Bold" TextColor="#1690F4" VerticalOptions="Center" HorizontalOptions="Center" Margin="20"/>
+            <Image Source="Contact" />
+        
+            <Label Text="Name"/>
+            <Entry x:Name="Name"  Placeholder="Your name here" />
+            
+            <Label Text="Last name"/>
+            <Entry x:Name="LastName" Placeholder="Your Last name here" />
+            
+            <Label Text="Telephone"/>
+            <Entry x:Name="Telephone" Keyboard="Numeric">
+                <Entry.Behaviors>
+                    <Behaviors:MaskedBehavior Mask="(XXX) XXX-XXXX" />
+                </Entry.Behaviors>
+            </Entry>
+        
+            <Button Text="Add contact" HorizontalOptions="FillAndExpand" BackgroundColor="#1690F4" TextColor="White" Margin="0,20" Clicked="OnButtonClicked" />
+              
+            <ListView x:Name="ContactListView" 
+                      BackgroundColor="#F0ECEC"
+                      SelectionMode="None" 
+                      Footer="">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                     <ViewCell> 
+                         <StackLayout Orientation="Horizontal" Margin="0,10">
+                           <Label  Text="{Binding Name}"      FontSize="15" />
+                           <Label  Text="{Binding LastName}"  FontSize="15" />
+                           <Label  Text="{Binding Telephone}" FontSize="15"  HorizontalOptions="EndAndExpand"/>     
+                        </StackLayout>
+                     </ViewCell>
+                  </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+    </StackLayout>
+</ContentPage>         
